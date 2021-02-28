@@ -1,8 +1,11 @@
 import { Button, Card, Col, Row, Typography, Image } from 'antd'
+import { push } from 'connected-react-router'
 import moment from 'moment'
 import { FC } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { API } from '../../config'
+import { addItem } from '../../helpers/cart'
 import { Product } from '../../store/modules/product'
 
 interface Props {
@@ -13,6 +16,12 @@ interface Props {
 const { Title, Paragraph } = Typography
 
 const ProductItem:FC<Props> = ({ product, showViewProduct = true, showCartButton = true }) => {
+  const dispatch = useDispatch()
+  const addToCart = () => {
+    addItem(product, () => {
+      dispatch(push('/cart'))
+    })
+  }
   const showButtons = () => {
     let buttonArray = []
     if (showViewProduct) {
@@ -22,7 +31,7 @@ const ProductItem:FC<Props> = ({ product, showViewProduct = true, showCartButton
     }
     if (showCartButton) {
       buttonArray.push(
-        <Button type="link"><Link to="">加入购物车</Link></Button>
+        <Button type="link" onClick={addToCart}>加入购物车</Button>
       )
     }
     return buttonArray

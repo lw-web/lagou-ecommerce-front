@@ -28,7 +28,7 @@ const AdminDashboard = () => {
         </Menu.Item>
         <Menu.Item>
           <OrderedListOutlined />
-          <Link to="">订单列表</Link>
+          <Link to="/admin/orders">订单列表</Link>
         </Menu.Item>
       </Menu>
     </>

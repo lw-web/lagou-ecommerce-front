@@ -12,7 +12,7 @@ const AdminRoute: FC<AdminRouteProps> = ({ component: Component, ...rest }) => {
     const auth = isAuth()
     if (auth) {
       const { user: { role } } = auth as Jwt
-      if (role === 0) return <Component {...props}/>
+      if (role === 1) return <Component {...props}/>
     }
     return <Redirect to="/signin" />
   }} />
